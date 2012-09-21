@@ -47,4 +47,11 @@ class tomcat {
     subscribe => Package['tomcat6'],
   }
 
+  file { '/etc/tomcat6/server.xml':
+    ensure  => present,
+    content => template('tomcat/server.xml.erb'),
+    notify  => Service['tomcat6'],
+    require => Package['tomcat6'],
+  }
+
 }
