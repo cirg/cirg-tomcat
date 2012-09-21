@@ -36,7 +36,8 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class tomcat (
-  $disable_authentication = hiera('tomcat::disable_authentication', false)
+  $disable_authentication = hiera('tomcat::disable_authentication', false),
+  $enable_ajp = hiera('tomcat::enable_ajp', false)
 ) {
 
   package { 'tomcat6':
