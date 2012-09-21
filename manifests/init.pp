@@ -35,7 +35,9 @@
 #
 # Copyright 2011 Your name here, unless otherwise noted.
 #
-class tomcat {
+class tomcat (
+  $disable_authentication = hiera('tomcat::disable_authentication', false)
+) {
 
   package { 'tomcat6':
     ensure => installed,
