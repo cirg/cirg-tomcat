@@ -37,7 +37,8 @@
 #
 class tomcat (
   $disable_authentication = hiera('tomcat::disable_authentication', false),
-  $enable_ajp = hiera('tomcat::enable_ajp', false)
+  $enable_ajp = hiera('tomcat::enable_ajp', false),
+  $java_opts = hiera('tomcat::java_opts', '-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC')
 ) {
 
   package { 'tomcat6':
