@@ -37,6 +37,7 @@
 #
 class tomcat (
   $disable_authentication = hiera('tomcat::disable_authentication', false),
+  $default_file_extra = hiera('tomcat::default_file_extra', false),
   $enable_ajp = hiera('tomcat::enable_ajp', false),
   $java_opts = hiera('tomcat::java_opts', '-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC'),
   $java_opts_extra = hiera('tomcat::java_opts_extra', false),

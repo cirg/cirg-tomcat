@@ -50,3 +50,7 @@ JAVA_OPTS="${JAVA_OPTS} <%= java_opts_extra %>"
 # Unset LC_ALL to prevent user environment executing the init script from
 # influencing servlet behavior.  See Debian bug #645221
 unset LC_ALL
+<% if default_file_extra -%>
+
+<%= default_file_extra %>
+<% end -%>
