@@ -50,6 +50,13 @@ class tomcat (
     subscribe => Package['tomcat6'],
   }
 
+  file { '/etc/default/tomcat6':
+    ensure  => present,
+    content => template('tomcat/default.tomcat6.erb'),
+    notify  => Service['tomcat6'],
+    require => Package['tomcat6'],
+  }
+
   file { '/etc/tomcat6/server.xml':
     ensure  => present,
     content => template('tomcat/server.xml.erb'),
