@@ -36,6 +36,7 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class tomcat (
+  $create_legacy_symlinks = false,
   $disable_authentication = false,
   $default_file_extra = false,
   $enable_ajp = false,
@@ -67,4 +68,44 @@ class tomcat (
     require => Package['tomcat6'],
   }
 
+  if $create_legacy_symlinks {
+    file { '/usr/share/tomcat6/conf':
+      ensure  => link,
+      target  => '/etc/tomcat6',
+      require => Package['tomcat6'],
+    }
+
+    file { '/usr/share/tomcat6/doc':
+      ensure  => link,
+      target  => '../doc/tomcat6',
+      require => Package['tomcat6'],
+    }
+
+    file { '/usr/share/tomcat6/logs':
+      ensure  => link,
+      target  => '/var/lib/tomcat6/logs',
+      require => Package['tomcat6'],
+    }
+
+    file { '/usr/share/tomcat6/shared':
+      ensure  => link,
+      target  => '/var/lib/tomcat6/shared',
+      require => Package['tomcat6'],
+    }
+
+    # Tomcat 5.5 contained /usr/share/tomcat5.5/temp link, but target
+    # (/var/lib/tomcat6/temp) does not exist on tomcat 6.
+
+    file { '/usr/share/tomcat6/webapps':
+      ensure  => link,
+      target  => '/var/lib/tomcat6/webapps',
+      require => Package['tomcat6'],
+    }
+
+    file { '/usr/share/tomcat6/work':
+      ensure  => link,
+      target  => '/var/lib/tomcat6/work',
+      require => Package['tomcat6'],
+    }
+  }
 }
